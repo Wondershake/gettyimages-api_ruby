@@ -1,2 +1,4 @@
 language: ruby
 sudo: false
+gemfile:
+    ConnectSDK/Gemfile
