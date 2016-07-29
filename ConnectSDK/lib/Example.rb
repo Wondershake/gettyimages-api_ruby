@@ -16,7 +16,5 @@ search_results	= connectSdk.search().images().creative()
 					.execute()
 
 search_results["images"].each do | image |
-	puts "Id: #{image["id"]} Title: #{image["title"]}" 
+	puts "Id: #{image["id"]} Title: #{image["title"]}"
 end
-
-
