@@ -18,7 +18,7 @@ class SearchImages < RequestBase
   ].freeze
 
   QUERY_PARAMS_NAMES.each do |key|
-    define_method :'with_#{key}' do |value = true|
+    define_method :"with_#{key}" do |value = true|
       if value.is_a?(Array)
         build_query_params(key, value.join(','))
       else
