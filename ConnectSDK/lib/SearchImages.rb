@@ -13,6 +13,7 @@ class SearchImages < RequestBase
     'orientations',
     'exclude_nudity',
     'embed_content_only',
+    'sort_order',
     'page',
     'page_size'
   ].freeze
