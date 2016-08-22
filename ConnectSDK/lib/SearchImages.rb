@@ -33,12 +33,12 @@ class SearchImages < RequestBase
   # with_graphical_styles
   # with_license_models
   def creative()
-    @@search_route = '#{CONNECT_ROUTE}/creative'
+    @@search_route = "#{CONNECT_ROUTE}/creative"
     self
   end
 
   def editorial()
-    @@search_route = '#{CONNECT_ROUTE}/editorial'
+    @@search_route = "#{CONNECT_ROUTE}/editorial"
     self
   end
 
