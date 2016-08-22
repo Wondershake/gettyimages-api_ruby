@@ -71,7 +71,7 @@ class HttpHelper
     connect_request["User-Agent"] = "ConnectSDK/#{ConnectSDK::VERSION} (#{os} ; Ruby #{RUBY_VERSION})"
     connect_request["Api-Key"] = api_key
     connect_request["Authorization"] = "Bearer #{bearer_token}" unless bearer_token.empty?
-
+    connect_request["Accept-Language"] = "ja"
 
     # connect_request.each_header do |header_name, header_value|
       #  puts "#{header_name} : #{header_value}"
