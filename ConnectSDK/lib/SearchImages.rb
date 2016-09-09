@@ -32,12 +32,12 @@ class SearchImages < RequestBase
   # {https://connect.gettyimages.com/swagger/ui/index.html#!/Search/Search_GetCreativeImagesByPhrase Creative Swagger}
   # with_graphical_styles
   # with_license_models
-  def creative()
+  def creative
     @@search_route = "#{CONNECT_ROUTE}/creative"
     self
   end
 
-  def editorial()
+  def editorial
     @@search_route = "#{CONNECT_ROUTE}/editorial"
     self
   end

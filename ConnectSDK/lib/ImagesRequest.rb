@@ -1,32 +1,33 @@
-require_relative "RequestBase"
+require_relative 'RequestBase'
 
 class ImagesRequest < RequestBase
-
-  CONNECT_ROUTE = "/v3/images" # mashery endpoint
-
-  QUERY_PARAMS_NAMES = ["page","page_size"]
+  CONNECT_ROUTE = '/v3/images'.freeze # mashery endpoint
+  @search_route = CONNECT_ROUTE
+  QUERY_PARAMS_NAMES = %w(page page_size).freeze
 
   QUERY_PARAMS_NAMES.each do |key|
     define_method :"with_#{key}" do |value = true|
-        if value.is_a?(Array)
-          build_query_params(key, value.join(","))
-        else
-          build_query_params(key, value)
-        end
-        return self
+      if value.is_a?(Array)
+        build_query_params(key, value.join(','))
+      else
+        build_query_params(key, value)
       end
+      return self
     end
+  end
 
-  public
   def with_ids(ids)
-    @ids = ids.join("%2C")
-    return self
+    ids = ids.join('%2C')
+    @search_route = "#{CONNECT_ROUTE}/#{ids}"
+    self
   end
 
-  public
+  def similar(id)
+    @search_route = "#{CONNECT_ROUTE}/#{id}/similar"
+    self
+  end
+
   def execute
-    return @http_helper.get("#{CONNECT_ROUTE}/#{@ids}", @query_params)
-    return "here"
+    @http_helper.get(@search_route, @query_params)
   end
-
 end
