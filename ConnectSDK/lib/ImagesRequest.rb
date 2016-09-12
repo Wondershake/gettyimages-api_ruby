@@ -12,7 +12,7 @@ class ImagesRequest < RequestBase
       else
         build_query_params(key, value)
       end
-      return self
+      self
     end
   end
 
@@ -22,7 +22,7 @@ class ImagesRequest < RequestBase
     self
   end
 
-  def similar(id)
+  def with_similar_id(id)
     @search_route = "#{CONNECT_ROUTE}/#{id}/similar"
     self
   end
