@@ -2,7 +2,7 @@ require_relative 'RequestBase'
 
 class ImagesRequest < RequestBase
   CONNECT_ROUTE = '/v3/images'.freeze # mashery endpoint
-  @search_route = CONNECT_ROUTE
+  @@search_route = CONNECT_ROUTE
   QUERY_PARAMS_NAMES = %w(page page_size).freeze
 
   QUERY_PARAMS_NAMES.each do |key|
@@ -18,16 +18,16 @@ class ImagesRequest < RequestBase
 
   def with_ids(ids)
     ids = ids.join('%2C')
-    @search_route = "#{CONNECT_ROUTE}/#{ids}"
+    @@search_route = "#{CONNECT_ROUTE}/#{ids}"
     self
   end
 
   def with_similar_id(id)
-    @search_route = "#{CONNECT_ROUTE}/#{id}/similar"
+    @@search_route = "#{CONNECT_ROUTE}/#{id}/similar"
     self
   end
 
   def execute
-    @http_helper.get(@search_route, @query_params)
+    @http_helper.get(@@search_route, @query_params)
   end
 end

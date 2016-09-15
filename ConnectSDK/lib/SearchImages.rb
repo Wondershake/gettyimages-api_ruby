@@ -2,7 +2,7 @@ require_relative 'RequestBase'
 
 class SearchImages < RequestBase
   CONNECT_ROUTE = '/v3/search/images'.freeze # mashery endpoint
-  @search_route = CONNECT_ROUTE
+  @@search_route = CONNECT_ROUTE
   QUERY_PARAMS_NAMES = [
     'phrase',
     'age_of_people',
@@ -33,16 +33,16 @@ class SearchImages < RequestBase
   # with_graphical_styles
   # with_license_models
   def creative
-    @search_route = "#{CONNECT_ROUTE}/creative"
+    @@search_route = "#{CONNECT_ROUTE}/creative"
     self
   end
 
   def editorial
-    @search_route = "#{CONNECT_ROUTE}/editorial"
+    @@search_route = "#{CONNECT_ROUTE}/editorial"
     self
   end
 
   def execute
-    @http_helper.get(@search_route, @query_params)
+    @http_helper.get(@@search_route, @query_params)
   end
 end
