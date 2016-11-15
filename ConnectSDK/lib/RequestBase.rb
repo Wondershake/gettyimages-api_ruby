@@ -26,7 +26,12 @@ class RequestBase
 
   protected
   def build_query_params(key, value)
-    @query_params[key].nil? ? @query_params[key] = value : @query_params[key] << "," + value
+    if @query_params[key].nil?
+      @query_params[key] = value
+    else
+      return @query_params if value.nil?
+      @query_params[key] << "," + value
+    end
   end
 
 
