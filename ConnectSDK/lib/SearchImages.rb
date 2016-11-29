@@ -8,6 +8,7 @@ class SearchImages < RequestBase
     'age_of_people',
     'compositions',
     'editorial_segments',
+    'ethnicity',
     'graphical_styles',
     'license_models',
     'orientations',
