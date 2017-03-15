@@ -7,7 +7,6 @@ class OAuthGrantType
 end
 
 class Credentials
-
   attr_accessor :credential_type
   attr_accessor :client_key
   attr_accessor :client_secret
@@ -24,7 +23,6 @@ class Credentials
 
   # Get Access Token Using Connect API OAuth 2.0
   def get_access_token
-
     # Determine OAuth Flow
     case @credential_type
       when OAuthGrantType::PASSWORD
@@ -61,7 +59,5 @@ class Credentials
     result = JSON.parse(data)
 
     return result['access_token']
-
   end
-
 end

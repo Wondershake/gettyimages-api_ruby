@@ -14,10 +14,8 @@ require_relative "DownloadRequest"
 # {https://connect.gettyimages.com/swagger/ui/index.html Connect Getty Images API}
 
 class ConnectSdk
-
   # Initialize the Credentials to be used by the SDK
   def initialize(api_key, api_secret, user_name = nil, password = nil)
-
     @credentials = Credentials.new(
       :credential_type => (user_name.nil?) || (password.nil?) ? OAuthGrantType::CLIENT_CREDENTIALS : OAuthGrantType::PASSWORD,
       :client_key => api_key,
@@ -47,5 +45,4 @@ class ConnectSdk
   def download
     return DownloadRequest.new(@credentials.client_key, @credentials.get_access_token)
   end
-
 end

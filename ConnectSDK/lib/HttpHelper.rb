@@ -10,7 +10,6 @@ class Connect_Api_Host
 end
 
 class HttpHelper
-
   def initialize(api_key, access_token)
     @api_key = api_key
     @access_token = access_token
@@ -21,7 +20,6 @@ class HttpHelper
   end
 
   def get(endpoint_path, query_params)
-
     uri = get_uri(endpoint_path)
     #puts uri
     if !query_params.nil?
@@ -30,15 +28,12 @@ class HttpHelper
     #puts "REQUEST URI: #{uri.request_uri}"
     req = Net::HTTP::Get.new uri.request_uri
     return send uri, req, @api_key, @access_token
-
   end
 
   def post(endpoint_path)
-
     uri = get_uri endpoint_path
     req = Net::HTTP::Post.new uri.request_uri
     return send uri, req, @api_key, @access_token
-
   end
 
   private
@@ -61,7 +56,6 @@ class HttpHelper
 
   private
   def send(connect_uri, connect_request, api_key, bearer_token = "")
-
     # define HTTPS connection
     https = Net::HTTP.new(connect_uri.host, connect_uri.port)
     https.use_ssl = true
@@ -87,7 +81,5 @@ class HttpHelper
     end
 
     return JSON.parse(resp.body)
-
   end
-
 end
