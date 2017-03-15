@@ -9,13 +9,11 @@ class RequestBase
     @query_params = Hash.new
   end
 
-  public
   def with_response_fields(fields)
     build_query_params("fields", fields.join(","))
     return self
   end
 
-  public
   def with_response_field(field)
     build_query_params("fields", field)
     return self
