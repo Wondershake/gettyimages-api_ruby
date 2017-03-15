@@ -17,11 +17,11 @@ class ConnectSdk
   # Initialize the Credentials to be used by the SDK
   def initialize(api_key, api_secret, user_name = nil, password = nil)
     @credentials = Credentials.new(
-      :credential_type => (user_name.nil?) || (password.nil?) ? OAuthGrantType::CLIENT_CREDENTIALS : OAuthGrantType::PASSWORD,
-      :client_key => api_key,
-      :client_secret => api_secret,
-      :user_name => user_name,
-      :password => password)
+      credential_type: (user_name.nil?) || (password.nil?) ? OAuthGrantType::CLIENT_CREDENTIALS : OAuthGrantType::PASSWORD,
+      client_key: api_key,
+      client_secret: api_secret,
+      user_name: user_name,
+      password: password)
   end
 
   # Get access token to be used by the SDK

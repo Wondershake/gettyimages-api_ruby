@@ -27,16 +27,16 @@ class Credentials
     case @credential_type
       when OAuthGrantType::PASSWORD
         oauth_data = {
-          :grant_type => @credential_type,
-          :client_id => @client_key,
-          :client_secret => @client_secret,
-          :username => @user_name,
-          :password => @password }
+          grant_type: @credential_type,
+          client_id: @client_key,
+          client_secret: @client_secret,
+          username: @user_name,
+          password: @password }
       when OAuthGrantType::CLIENT_CREDENTIALS
         oauth_data = {
-          :grant_type => @credential_type,
-          :client_id => @client_key,
-          :client_secret => @client_secret }
+          grant_type: @credential_type,
+          client_id: @client_key,
+          client_secret: @client_secret }
       else
         puts 'Current OAuth flow only supports Resource Owner and Client Credentials'
     end
