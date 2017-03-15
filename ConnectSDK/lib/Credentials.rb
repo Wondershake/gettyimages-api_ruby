@@ -24,20 +24,20 @@ class Credentials
   # Get Access Token Using Connect API OAuth 2.0
   def get_access_token
     # Determine OAuth Flow
-    case @credential_type
+    case credential_type
     when OAuthGrantType::PASSWORD
       oauth_data = {
-        grant_type:    @credential_type,
-        client_id:     @client_key,
-        client_secret: @client_secret,
-        username:      @user_name,
-        password:      @password,
+        grant_type:    credential_type,
+        client_id:     client_key,
+        client_secret: client_secret,
+        username:      user_name,
+        password:      password,
       }
     when OAuthGrantType::CLIENT_CREDENTIALS
       oauth_data = {
-        grant_type:    @credential_type,
-        client_id:     @client_key,
-        client_secret: @client_secret,
+        grant_type:    credential_type,
+        client_id:     client_key,
+        client_secret: client_secret,
       }
     else
       puts 'Current OAuth flow only supports Resource Owner and Client Credentials'
@@ -50,7 +50,7 @@ class Credentials
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     req = Net::HTTP::Post.new uri.request_uri
-    req['Api-Key'] = @client_key
+    req['Api-Key'] = client_key
     req.set_form_data oauth_data
 
     res    = https.request req
