@@ -13,12 +13,12 @@ class DownloadRequest
 
   def with_id(asset_id)
     self.asset_id = asset_id
-    return self
+    self
   end
 
   def execute
     uri = '/v3/downloads/' + self.asset_id + '?auto_download=false'
     data = @http_helper.post(uri)
-     return data['uri']
+    data['uri']
   end
 end

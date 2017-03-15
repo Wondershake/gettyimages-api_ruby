@@ -7,6 +7,6 @@ class SearchRequest
   end
 
   def images
-    return SearchImages.new(@api_key, @token)
+    SearchImages.new(@api_key, @token)
   end
 end

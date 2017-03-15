@@ -18,7 +18,7 @@ class Credentials
   end
 
   def get_uri(path)
-    return URI.parse "#{Connect_Api_Host::API_BASE_URL}#{path}"
+    URI.parse "#{Connect_Api_Host::API_BASE_URL}#{path}"
   end
 
   # Get Access Token Using Connect API OAuth 2.0
@@ -58,6 +58,6 @@ class Credentials
     data = res.body if res.is_a?(Net::HTTPSuccess)
     result = JSON.parse(data)
 
-    return result['access_token']
+    result['access_token']
   end
 end

@@ -16,7 +16,7 @@ class HttpHelper
   end
 
   def get_uri(path)
-    return URI.parse "#{Connect_Api_Host::API_BASE_URL}#{path}"
+    URI.parse "#{Connect_Api_Host::API_BASE_URL}#{path}"
   end
 
   def get(endpoint_path, query_params)
@@ -27,13 +27,13 @@ class HttpHelper
     end
     #puts "REQUEST URI: #{uri.request_uri}"
     req = Net::HTTP::Get.new uri.request_uri
-    return send uri, req, @api_key, @access_token
+    send uri, req, @api_key, @access_token
   end
 
   def post(endpoint_path)
     uri = get_uri endpoint_path
     req = Net::HTTP::Post.new uri.request_uri
-    return send uri, req, @api_key, @access_token
+    send uri, req, @api_key, @access_token
   end
 
   private
@@ -80,6 +80,6 @@ class HttpHelper
       raise "HTTP RESPONSE: #{resp}"
     end
 
-    return JSON.parse(resp.body)
+    JSON.parse(resp.body)
   end
 end

@@ -26,23 +26,23 @@ class ConnectSdk
 
   # Get access token to be used by the SDK
   def get_access_token
-    return @credentials.get_access_token
+    @credentials.get_access_token
   end
 
   # Create a search configuration that support image searching
   # SearchRequest configured for a image search
   def search
-    return SearchRequest.new(@credentials.client_key, @credentials.get_access_token)
+    SearchRequest.new(@credentials.client_key, @credentials.get_access_token)
   end
 
   # Create a image details configuration that support image details
   # == Returns:
   # ImagesRequest configured for a image details
   def images
-    return ImagesRequest.new(@credentials.client_key, @credentials.get_access_token)
+    ImagesRequest.new(@credentials.client_key, @credentials.get_access_token)
   end
 
   def download
-    return DownloadRequest.new(@credentials.client_key, @credentials.get_access_token)
+    DownloadRequest.new(@credentials.client_key, @credentials.get_access_token)
   end
 end

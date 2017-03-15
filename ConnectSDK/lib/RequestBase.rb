@@ -11,12 +11,12 @@ class RequestBase
 
   def with_response_fields(fields)
     build_query_params("fields", fields.join(","))
-    return self
+    self
   end
 
   def with_response_field(field)
     build_query_params("fields", field)
-    return self
+    self
   end
 
   protected
