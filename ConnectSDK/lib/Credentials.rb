@@ -43,15 +43,12 @@ class Credentials
       puts 'Current OAuth flow only supports Resource Owner and Client Credentials'
     end
 
-    # define endpoint
     uri = get_uri '/oauth2/token'
 
-    # define HTTPS connection
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    # define Request
     req = Net::HTTP::Post.new uri.request_uri
     req['Api-Key'] = @client_key
     req.set_form_data oauth_data

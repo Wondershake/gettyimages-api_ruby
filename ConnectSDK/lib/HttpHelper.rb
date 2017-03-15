@@ -21,11 +21,9 @@ class HttpHelper
 
   def get(endpoint_path, query_params)
     uri = get_uri(endpoint_path)
-    #puts uri
     if !query_params.nil?
       uri.query = URI.encode_www_form query_params
     end
-    #puts "REQUEST URI: #{uri.request_uri}"
     req = Net::HTTP::Get.new uri.request_uri
     send uri, req, @api_key, @access_token
   end
@@ -58,25 +56,16 @@ class HttpHelper
   end
 
   def send(connect_uri, connect_request, api_key, bearer_token = "")
-    # define HTTPS connection
     https = Net::HTTP.new(connect_uri.host, connect_uri.port)
     https.use_ssl = true
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    # define headers
     connect_request["User-Agent"]      = "ConnectSDK/#{ConnectSDK::VERSION} (#{os} ; Ruby #{RUBY_VERSION})"
     connect_request["Api-Key"]         = api_key
     connect_request["Authorization"]   = "Bearer #{bearer_token}" unless bearer_token.empty?
     connect_request["Accept-Language"] = "ja"
 
-    # connect_request.each_header do |header_name, header_value|
-    #  puts "#{header_name} : #{header_value}"
-    # end
-    # https.set_debug_output $stderr
-
-    # send request
     resp = https.request connect_request
-    # puts "HTTP RESPONSE: #{resp}"
 
     if !resp.is_a?(Net::HTTPSuccess)
       raise "HTTP RESPONSE: #{resp}"

@@ -4,7 +4,6 @@ class DownloadRequest
   attr_accessor :asset_id
 
   def initialize(api_key, access_token)
-    self
     @api_key      = api_key
     @access_token = access_token
 
