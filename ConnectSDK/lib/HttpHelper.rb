@@ -11,7 +11,7 @@ end
 
 class HttpHelper
   def initialize(api_key, access_token)
-    @api_key = api_key
+    @api_key      = api_key
     @access_token = access_token
   end
 
@@ -39,21 +39,23 @@ class HttpHelper
   private
 
   def os
-    @os ||= (
-    host_os = RbConfig::CONFIG['host_os']
-    case host_os
-      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-        :windows
-      when /darwin|mac os/
-        :macosx
-      when /linux/
-        :linux
-      when /solaris|bsd/
-        :unix
-      else
-        raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
-      end)
-    end
+    @os ||=
+      begin
+        host_os = RbConfig::CONFIG['host_os']
+        case host_os
+        when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+          :windows
+        when /darwin|mac os/
+          :macosx
+        when /linux/
+          :linux
+        when /solaris|bsd/
+          :unix
+        else
+          raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
+        end
+      end
+  end
 
   def send(connect_uri, connect_request, api_key, bearer_token = "")
     # define HTTPS connection
@@ -62,13 +64,13 @@ class HttpHelper
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     # define headers
-    connect_request["User-Agent"] = "ConnectSDK/#{ConnectSDK::VERSION} (#{os} ; Ruby #{RUBY_VERSION})"
-    connect_request["Api-Key"] = api_key
-    connect_request["Authorization"] = "Bearer #{bearer_token}" unless bearer_token.empty?
+    connect_request["User-Agent"]      = "ConnectSDK/#{ConnectSDK::VERSION} (#{os} ; Ruby #{RUBY_VERSION})"
+    connect_request["Api-Key"]         = api_key
+    connect_request["Authorization"]   = "Bearer #{bearer_token}" unless bearer_token.empty?
     connect_request["Accept-Language"] = "ja"
 
     # connect_request.each_header do |header_name, header_value|
-      #  puts "#{header_name} : #{header_value}"
+    #  puts "#{header_name} : #{header_value}"
     # end
     # https.set_debug_output $stderr
 
@@ -76,7 +78,7 @@ class HttpHelper
     resp = https.request connect_request
     # puts "HTTP RESPONSE: #{resp}"
 
-     if !resp.is_a?(Net::HTTPSuccess)
+    if !resp.is_a?(Net::HTTPSuccess)
       raise "HTTP RESPONSE: #{resp}"
     end
 

@@ -2,8 +2,8 @@ require 'open-uri'
 require 'net/https'
 
 class OAuthGrantType
-   PASSWORD = 'password'
-   CLIENT_CREDENTIALS = 'client_credentials'
+  PASSWORD = 'password'
+  CLIENT_CREDENTIALS = 'client_credentials'
 end
 
 class Credentials
@@ -25,20 +25,22 @@ class Credentials
   def get_access_token
     # Determine OAuth Flow
     case @credential_type
-      when OAuthGrantType::PASSWORD
-        oauth_data = {
-          grant_type: @credential_type,
-          client_id: @client_key,
-          client_secret: @client_secret,
-          username: @user_name,
-          password: @password }
-      when OAuthGrantType::CLIENT_CREDENTIALS
-        oauth_data = {
-          grant_type: @credential_type,
-          client_id: @client_key,
-          client_secret: @client_secret }
-      else
-        puts 'Current OAuth flow only supports Resource Owner and Client Credentials'
+    when OAuthGrantType::PASSWORD
+      oauth_data = {
+        grant_type:    @credential_type,
+        client_id:     @client_key,
+        client_secret: @client_secret,
+        username:      @user_name,
+        password:      @password,
+      }
+    when OAuthGrantType::CLIENT_CREDENTIALS
+      oauth_data = {
+        grant_type:    @credential_type,
+        client_id:     @client_key,
+        client_secret: @client_secret,
+      }
+    else
+      puts 'Current OAuth flow only supports Resource Owner and Client Credentials'
     end
 
     # define endpoint
@@ -54,8 +56,8 @@ class Credentials
     req['Api-Key'] = @client_key
     req.set_form_data oauth_data
 
-    res = https.request req
-    data = res.body if res.is_a?(Net::HTTPSuccess)
+    res    = https.request req
+    data   = res.body if res.is_a?(Net::HTTPSuccess)
     result = JSON.parse(data)
 
     result['access_token']

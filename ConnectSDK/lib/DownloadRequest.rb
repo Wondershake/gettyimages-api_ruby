@@ -5,7 +5,7 @@ class DownloadRequest
 
   def initialize(api_key, access_token)
     self
-    @api_key = api_key
+    @api_key      = api_key
     @access_token = access_token
 
     @http_helper = HttpHelper.new(api_key, access_token)
