@@ -37,6 +37,7 @@ class HttpHelper
   end
 
   private
+
   def os
     @os ||= (
     host_os = RbConfig::CONFIG['host_os']
@@ -54,7 +55,6 @@ class HttpHelper
       end)
     end
 
-  private
   def send(connect_uri, connect_request, api_key, bearer_token = "")
     # define HTTPS connection
     https = Net::HTTP.new(connect_uri.host, connect_uri.port)

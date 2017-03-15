@@ -20,6 +20,7 @@ class RequestBase
   end
 
   protected
+
   def build_query_params(key, value)
     if @query_params[key].nil?
       @query_params[key] = value
