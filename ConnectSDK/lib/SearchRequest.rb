@@ -7,7 +7,7 @@ class SearchRequest
   end
 
   public
-  def images()
+  def images
     return SearchImages.new(@api_key, @token)
   end
 end

@@ -31,14 +31,14 @@ class ConnectSdk
 
   # Create a search configuration that support image searching
   # SearchRequest configured for a image search
-  def search()
+  def search
     return SearchRequest.new(@credentials.client_key, @credentials.get_access_token)
   end
 
   # Create a image details configuration that support image details
   # == Returns:
   # ImagesRequest configured for a image details
-  def images()
+  def images
     return ImagesRequest.new(@credentials.client_key, @credentials.get_access_token)
   end
 
