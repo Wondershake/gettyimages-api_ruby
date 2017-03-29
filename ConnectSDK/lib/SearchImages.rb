@@ -26,7 +26,7 @@ class SearchImages < RequestBase
       else
         build_query_params(key, value)
       end
-      return self
+      self
     end
   end
 
